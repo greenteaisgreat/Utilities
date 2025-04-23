@@ -10,6 +10,20 @@
   background-color: cadetblue;
   color: white;
   cursor: pointer;
+  box-shadow: 8px 10px 15px gray;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.wrapper button {
+  width: 10rem;
+  height: 3rem;
+  margin: 1rem;
 }
 
 .answer {
@@ -24,11 +38,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
 }
 
 .accordion {

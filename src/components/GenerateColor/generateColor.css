@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+  width: 100vw;
+  height: 100vh;
+}
+
+.button-wrapper button {
+  margin: 0.5rem;
+}

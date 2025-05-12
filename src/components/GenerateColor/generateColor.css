@@ -1,9 +1,9 @@
 .container {
   display: flex;
   justify-content: space-evenly;
-  margin: 1rem;
   width: 100vw;
   height: 100vh;
+  background-color: var(--colorCode);
 }
 
 .button-wrapper button {

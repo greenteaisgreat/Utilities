@@ -6,6 +6,10 @@ export default function GenerateColor() {
   const [colorType, setColorType] = React.useState("hex");
   const [colorCode, setColorCode] = React.useState("#000");
 
+  function randomNumberUtility(length) {
+    return Math.floor(Math.random() * length);
+  }
+
   function handleGenerateRandomColor() {
     if (colorType === "hex") {
       let hexColor = "#";
@@ -28,9 +32,15 @@ export default function GenerateColor() {
         "f",
       ];
       for (let i = 0; i < 6; i++) {
-        hexColor += hexArr[Math.floor(Math.random() * hexArr.length)];
+        hexColor += hexArr[randomNumberUtility(hexArr.length)];
       }
       setColorCode(hexColor);
+    } else if (colorType === "rgb") {
+      const r = randomNumberUtility(256);
+      const g = randomNumberUtility(256);
+      const b = randomNumberUtility(256);
+
+      setColorCode(`rgb(${r}, ${g}, ${b})`);
     }
   }
 

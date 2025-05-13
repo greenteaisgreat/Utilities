@@ -4,6 +4,7 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--colorCode);
+  margin: 20px 0;
 }
 
 .button-wrapper button {

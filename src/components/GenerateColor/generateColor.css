@@ -9,3 +9,19 @@
 .button-wrapper button {
   margin: 0.5rem;
 }
+
+.color-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  height: 90vh;
+  font-size: 30px;
+}
+
+.color-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

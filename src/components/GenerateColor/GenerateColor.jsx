@@ -6,11 +6,19 @@ export default function GenerateColor() {
   const [colorType, setColorType] = React.useState("hex");
   const [colorCode, setColorCode] = React.useState("#000");
 
+  // generate a random number
   function randomNumberUtility(length) {
     return Math.floor(Math.random() * length);
   }
 
+  // used to ensure that the correct colorType is displayed
+  // after the user clicks on one of them
+  React.useEffect(() => {
+    handleGenerateRandomColor();
+  }, [colorType]);
+
   function handleGenerateRandomColor() {
+    // hex color generator logic
     if (colorType === "hex") {
       let hexColor = "#";
       const hexArr = [
@@ -35,7 +43,9 @@ export default function GenerateColor() {
         hexColor += hexArr[randomNumberUtility(hexArr.length)];
       }
       setColorCode(hexColor);
-    } else if (colorType === "rgb") {
+    }
+    // rgb color generator logic
+    else if (colorType === "rgb") {
       const r = randomNumberUtility(256);
       const g = randomNumberUtility(256);
       const b = randomNumberUtility(256);
@@ -52,6 +62,19 @@ export default function GenerateColor() {
         <button onClick={handleGenerateRandomColor}>
           Generate Random Color
         </button>
+        <div className="color-display">
+          <h1>
+            {colorType === "hex" ? (
+              <div className="color-text">
+                HEX <div>{colorCode}</div>
+              </div>
+            ) : (
+              <div className="color-text">
+                RGB <div>{colorCode}</div>
+              </div>
+            )}
+          </h1>
+        </div>
       </div>
     </div>
   );

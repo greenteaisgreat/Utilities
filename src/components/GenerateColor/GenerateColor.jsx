@@ -2,7 +2,7 @@ import React from "react";
 import "./generateColor.css";
 
 export default function GenerateColor() {
-  // hex || rgb
+  // hex || rgb; more to be added later
   const [colorType, setColorType] = React.useState("hex");
   const [colorCode, setColorCode] = React.useState("#000");
 
@@ -11,7 +11,7 @@ export default function GenerateColor() {
     return Math.floor(Math.random() * length);
   }
 
-  // used to ensure that the correct colorType is displayed
+  // used to ensure that the correct colorType text is displayed
   // after the user clicks on one of them
   React.useEffect(() => {
     handleGenerateRandomColor();
@@ -55,6 +55,7 @@ export default function GenerateColor() {
   }
 
   return (
+    // CSS var to dynamically reflect the color type selected
     <div className="container" style={{ "--colorCode": colorCode }}>
       <div className="button-wrapper">
         <button onClick={() => setColorType("hex")}>Generate HEX Color</button>

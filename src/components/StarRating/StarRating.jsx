@@ -10,7 +10,7 @@ export default function StarRating({ numOfStars = 5 }) {
     setHover(getCurrentIndex);
   }
 
-  function handleMouseLeave(getCurrentIndex) {
+  function handleMouseLeave() {
     setHover(rating);
   }
   function handleClick(getCurrentIndex) {
@@ -24,11 +24,12 @@ export default function StarRating({ numOfStars = 5 }) {
         return (
           <Star
             key={i}
-            className={hover || rating ? "active" : "inactive"}
             size={30}
             onMouseEnter={() => handleMouseEnter(i)}
             onMouseLeave={() => handleMouseLeave(i)}
             onClick={() => handleClick(i)}
+            color="black"
+            fill={i <= (hover || rating) ? "yellow" : "white"}
           />
         );
       })}

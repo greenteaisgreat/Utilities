@@ -4,11 +4,3 @@
   align-items: center;
   margin: 1rem;
 }
-
-.active {
-  background-color: yellow;
-}
-
-.inactive {
-  background-color: white;
-}

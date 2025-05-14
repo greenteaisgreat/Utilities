@@ -1,0 +1,14 @@
+.star-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.active {
+  background-color: yellow;
+}
+
+.inactive {
+  background-color: white;
+}

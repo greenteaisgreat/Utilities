@@ -1,6 +1,14 @@
 .star-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 1rem;
+}
+
+.star-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
 }

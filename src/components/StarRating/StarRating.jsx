@@ -13,26 +13,31 @@ export default function StarRating({ numOfStars = 5 }) {
   function handleMouseLeave() {
     setHover(rating);
   }
+
   function handleClick(getCurrentIndex) {
     setRating(getCurrentIndex);
   }
 
   return (
     <div className="star-wrapper">
-      {[...Array(numOfStars)].map((_, i) => {
-        i++;
-        return (
-          <Star
-            key={i}
-            size={30}
-            onMouseEnter={() => handleMouseEnter(i)}
-            onMouseLeave={() => handleMouseLeave(i)}
-            onClick={() => handleClick(i)}
-            color="black"
-            fill={i <= (hover || rating) ? "yellow" : "white"}
-          />
-        );
-      })}
+      <h1>Star Rating! 🌟</h1>
+      <div className="star-container">
+        {[...Array(numOfStars)].map((_, i) => {
+          i++;
+          return (
+            <Star
+              key={i}
+              size={30}
+              onMouseEnter={() => handleMouseEnter(i)}
+              onMouseLeave={() => handleMouseLeave(i)}
+              onClick={() => handleClick(i)}
+              color="black"
+              // React-Feather's property to determine star color
+              fill={i <= (hover || rating) ? "yellow" : "white"}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

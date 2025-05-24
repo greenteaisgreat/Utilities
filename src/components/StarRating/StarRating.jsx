@@ -5,6 +5,7 @@ import "./starRating.css";
 export default function StarRating({ numOfStars = 5 }) {
   const [rating, setRating] = React.useState(0);
   const [hover, setHover] = React.useState(0);
+  const starRef = React.useRef(null);
 
   function handleMouseEnter(getCurrentIndex) {
     setHover(getCurrentIndex);
@@ -18,10 +19,22 @@ export default function StarRating({ numOfStars = 5 }) {
     setRating(getCurrentIndex);
   }
 
+  React.useEffect(() => {
+    function handleOutsideClick(e) {
+      if (starRef.current && !starRef.current.contains(e.target)) {
+        setRating(0);
+        setHover(0);
+      }
+    }
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, []);
+
   return (
     <div className="star-wrapper">
       <h1>Star Rating! 🌟</h1>
-      <div className="star-container">
+      <div className="star-container" ref={starRef}>
         {[...Array(numOfStars)].map((_, i) => {
           i++;
           return (

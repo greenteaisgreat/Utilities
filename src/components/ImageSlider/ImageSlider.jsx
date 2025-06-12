@@ -1,22 +1,39 @@
 import React from "react";
+import { ArrowRightCircle, ArrowLeftCircle } from "react-feather";
 import "./imageSlider.css";
 
-export default function ImageSlider({ url, limit }) {
+export default function ImageSlider({ url, limit = 5, page = 1 }) {
   const [images, setImages] = React.useState([]);
-  const [sliderIndex, setSliderIndex] = React.useState(0);
+  const [slideIndex, setSlideIndex] = React.useState(0);
+
+  // idle | loading | success | error
+  const [status, setStatus] = React.useState("idle");
+
+  const imgRef = React.useRef(null);
 
   async function fetchImages(getUrl) {
     try {
-      const response = await fetch(getUrl);
-      const data = await response.json();
-      console.log(data);
+      setStatus("loading");
+      const response = await fetch(`${getUrl}?page=${page}&limit=${limit}`);
+      const json = await response.json();
+      console.log(json);
 
-      if (data.ok()) {
-        setImages(data.json);
+      if (json) {
+        setStatus("success");
+        setImages([...json]);
       }
     } catch (error) {
+      setStatus("error");
       console.error(`An error has occurred: ${error}`);
     }
+  }
+
+  function handlePreviousSlide() {
+    setSlideIndex(slideIndex === 0 ? images.length - 1 : slideIndex - 1);
+  }
+
+  function handleNextSlide() {
+    setSlideIndex(slideIndex === images.length - 1 ? 0 : slideIndex + 1);
   }
 
   React.useEffect(() => {
@@ -26,5 +43,53 @@ export default function ImageSlider({ url, limit }) {
     fetchImages(url);
   }, []);
 
-  return <div className="image-slider-wrapper">Test</div>;
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "error") {
+    return <div>There was an error!</div>;
+  }
+
+  return (
+    <div className="carousel">
+      <ArrowLeftCircle
+        size={75}
+        className="arrow arrow-left"
+        onClick={handlePreviousSlide}
+      />
+      {images && images.length
+        ? images.map((image, i) => (
+            <img
+              className={
+                slideIndex === i ? "carousel-item" : "carousel-item hide"
+              }
+              key={image.id}
+              src={image.download_url}
+              alt={image.download_url}
+            />
+          ))
+        : null}
+      <ArrowRightCircle
+        size={75}
+        className="arrow arrow-right"
+        onClick={handleNextSlide}
+      />
+      <span className="circle-indicators">
+        {images && images.length
+          ? images.map((_, i) => (
+              <button
+                key={i}
+                className={
+                  slideIndex === i
+                    ? "current-indicator"
+                    : "current-indicator hide"
+                }
+                onClick={() => setSlideIndex(i)}
+              ></button>
+            ))
+          : null}
+      </span>
+    </div>
+  );
 }

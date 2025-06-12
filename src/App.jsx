@@ -10,7 +10,7 @@ export default function App() {
       <Accordion />
       <GenerateColor />
       <StarRating />
-      <ImageSlider />
+      <ImageSlider url={"https://picsum.photos/v2/list"} />
     </>
   );
 }

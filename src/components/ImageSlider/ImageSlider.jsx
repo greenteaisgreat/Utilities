@@ -62,7 +62,7 @@ export default function ImageSlider({ url, limit = 5, page = 1 }) {
         ? images.map((image, i) => (
             <img
               className={
-                slideIndex === i ? "carousel-item" : "carousel-item hide"
+                slideIndex === i ? "carousel-item" : "carousel-item hide-img"
               }
               key={image.id}
               src={image.download_url}
@@ -83,7 +83,7 @@ export default function ImageSlider({ url, limit = 5, page = 1 }) {
                 className={
                   slideIndex === i
                     ? "current-indicator"
-                    : "current-indicator hide"
+                    : "current-indicator hide-indicator"
                 }
                 onClick={() => setSlideIndex(i)}
               ></button>

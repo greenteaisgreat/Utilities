@@ -9,14 +9,11 @@ export default function ImageSlider({ url, limit = 5, page = 1 }) {
   // idle | loading | success | error
   const [status, setStatus] = React.useState("idle");
 
-  const imgRef = React.useRef(null);
-
   async function fetchImages(getUrl) {
     try {
       setStatus("loading");
       const response = await fetch(`${getUrl}?page=${page}&limit=${limit}`);
       const json = await response.json();
-      console.log(json);
 
       if (json) {
         setStatus("success");
@@ -44,15 +41,24 @@ export default function ImageSlider({ url, limit = 5, page = 1 }) {
   }, []);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className="pending">
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   if (status === "error") {
-    return <div>There was an error!</div>;
+    return (
+      <div className="pending">
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return (
     <div className="carousel">
+      {status === "loading"}
       <ArrowLeftCircle
         size={75}
         className="arrow arrow-left"
